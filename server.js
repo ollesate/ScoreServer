@@ -1,10 +1,9 @@
 'use-strict';
 
-var express = require('express');
-
-var app = express();
-
+import express from 'express';
 import database from './database';
+
+let app = express();
 
 database.start();
 
