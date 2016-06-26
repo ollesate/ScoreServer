@@ -7,11 +7,7 @@ export default {
     this.run(`create table if not exists scores (
       player TEXT NOT NULL PRIMARY KEY,
       score INTEGER NOT NULL)`, []);
-    // this.select('select * from scores').then((result) => {
-    //   console.log(JSON.stringify(result));
-    // });
-    //this.run('insert into scores (player, score) values("olof", 10)');
-    //this.run('select * from scores');
+      
     this.select('select * from scores').then((rows) => {
       console.log("All rows " + JSON.stringify(rows));
     });
