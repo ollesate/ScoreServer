@@ -1,5 +1,3 @@
-import util from './utils';
-
 export default {
   db: null,
   start: function() {
