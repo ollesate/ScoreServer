@@ -59,46 +59,4 @@ export default {
     this.db.close();
     this.db = null;
   },
-  createInsertSql: function(table, data) {
-    var sql = 'insert into ' + table;
-
-    var keys = '';
-    var values = '';
-    var parameters = [];
-    for (let x in data) {
-      keys += x + ',';
-      values += '?,'; // Prevent SQL injection
-      parameters.push(data[x]);
-    }
-
-    keys = util.removeLastComma(keys);
-    values = util.removeLastComma(values);
-
-    sql += '(' + keys + ') values(' + values + ')';
-
-    console.log("db: " + sql + " " + parameters);
-
-    return {sql: sql, parameters: parameters};
-  },
-  createInsertOrReplaceSql: function(table, data) {
-    var sql = 'insert or replace into ' + table;
-
-    var keys = '';
-    var values = '';
-    var parameters = [];
-    for (let x in data) {
-      keys += x + ',';
-      values += '?,'; // Prevent SQL injection
-      parameters.push(data[x]);
-    }
-
-    keys = util.removeLastComma(keys);
-    values = util.removeLastComma(values);
-
-    sql += '(' + keys + ') values(' + values + ')';
-
-    console.log("db: " + sql + " " + parameters);
-
-    return {sql: sql, parameters: parameters};
-  }
 };

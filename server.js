@@ -14,11 +14,9 @@ app.get('/', (req, res) => {
 
 app.get('/score/add', (req, res) => {
   res.send('User: ' + req.query.test);
-  let sqlInsert = database.createInsertOrReplaceSql('scores', {
-    player: req.query.player,
-    score: req.query.score,
-  });
-  database.run(sqlInsert.sql, sqlInsert.parameters);
+  let query = 'insert or replace into scores (player, score) values(?,?)';
+  let parameters = [req.query.player, req.query.score];
+  database.run(query, parameters);
 });
 
 app.get('/score', (req,res) => {
