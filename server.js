@@ -12,10 +12,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/score/add', (req, res) => {
-  res.send('User: ' + req.query.test);
+  console.log("Inserted element %s with score %s", req.query.player, req.query.score);
   let query = 'insert or replace into scores (player, score) values(?,?)';
   let parameters = [req.query.player, req.query.score];
   database.run(query, parameters);
+  res.send('inserted successfully');
 });
 
 app.get('/score', (req,res) => {
