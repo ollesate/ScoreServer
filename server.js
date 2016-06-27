@@ -26,7 +26,7 @@ app.post('/score/add', (req, res) => {
 });
 
 app.get('/score', (req,res) => {
-  database.select('select * from scores order by score desc').then((rows) => {
+  database.select('select * from scores order by score desc limit 10').then((rows) => {
     console.log(JSON.stringify(rows));
     res.json(rows);
   });
