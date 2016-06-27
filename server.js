@@ -2,19 +2,24 @@
 
 import express from 'express';
 import database from './database';
+import bodyParser from 'body-parser';
 
 let app = express();
 
+app.use(bodyParser.json());
+
 database.start();
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
+app.all('/', (req, res) => {
+  console.log("Hello world");
+  res.send('Hello world2');
 });
 
-app.get('/score/add', (req, res) => {
-  console.log("Inserted element %s with score %s", req.query.player, req.query.score);
+app.post('/score/add', (req, res) => {
+  console.log("Body " + JSON.stringify(req.body));
+  console.log("Inserted element %s with score %s", req.body['player'], req.body['score']);
   let query = 'insert or replace into scores (player, score) values(?,?)';
-  let parameters = [req.query.player, req.query.score];
+  let parameters = [req.body['player'], req.body['score']];
   database.run(query, parameters);
   res.send('inserted successfully');
 });
