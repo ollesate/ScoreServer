@@ -5,9 +5,9 @@ export default {
     this.db = new sqlite3.Database('database.sqlite');
 
     this.run(`create table if not exists scores (
-      player TEXT NOT NULL PRIMARY KEY,
+      player TEXT NOT NULL,
       score INTEGER NOT NULL)`, []);
-      
+
     this.select('select * from scores').then((rows) => {
       console.log("All rows " + JSON.stringify(rows));
     });

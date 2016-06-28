@@ -19,7 +19,7 @@ app.post('/score/add', (req, res) => {
   console.log("Body " + JSON.stringify(req.body));
   let {player, score} = req.body;
   console.log("Inserted element %s with score %s", player, score);
-  let query = 'insert or replace into scores (player, score) values(?,?)';
+  let query = 'insert into scores (player, score) values(?,?)';
   let parameters = [player, score];
   database.run(query, parameters);
   res.send('inserted successfully');
